@@ -3,36 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>شكراً لك - Old Money Collection</title>
+  <title>شكراً لك - AM MODE</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Meta Pixel Base -->
- <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1137116105159272');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1137116105159272&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1137116105159272');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1137116105159272&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 
-  <!-- Purchase uniquement pour les vraies soumissions -->
+  <!-- Purchase uniquement si success=true -->
   <script>
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('success') === 'true') {
     fbq('track', 'Purchase', {
-      value: 3900,  // Tu peux ajuster dynamiquement si besoin, mais pour l'instant fixe
+      value: 4000.00,  // Prix de base fixe, tu peux le rendre dynamique plus tard si besoin
       currency: 'DZD'
     });
   }
@@ -40,11 +39,12 @@ src="https://www.facebook.com/tr?id=1137116105159272&ev=PageView&noscript=1"
 
   <style>
     :root {
-      --bg: #0f0f0f;
-      --card: #1a1a1a;
-      --text: #f5f5f5;
-      --accent: #d4af37;
-      --secondary: #b0892e;
+      --primary: hsl(217, 91%, 60%);
+      --secondary: hsl(142, 76%, 36%);
+      --background: hsl(210, 30%, 98%);
+      --foreground: hsl(215, 25%, 15%);
+      --card-bg: white;
+      --accent: hsl(217, 91%, 60%);
     }
     * {
       margin: 0;
@@ -54,26 +54,26 @@ src="https://www.facebook.com/tr?id=1137116105159272&ev=PageView&noscript=1"
     
     body {
       font-family: 'Cairo', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
+      background: var(--background);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
       direction: rtl;
-      color: var(--text);
+      color: var(--foreground);
     }
     
     .container {
-      background: var(--card);
+      background: var(--card-bg);
       border-radius: 24px;
       padding: 48px 32px;
       max-width: 600px;
       width: 100%;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 20px 60px rgba(59,130,246,0.2);
       text-align: center;
       animation: slideUp 0.6s ease-out;
-      border: 1px solid #333;
+      border: 2px solid var(--primary);
     }
     
     @keyframes slideUp {
@@ -90,7 +90,7 @@ src="https://www.facebook.com/tr?id=1137116105159272&ev=PageView&noscript=1"
     .check-icon {
       width: 90px;
       height: 90px;
-      background: var(--accent);
+      background: var(--secondary);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -111,7 +111,7 @@ src="https://www.facebook.com/tr?id=1137116105159272&ev=PageView&noscript=1"
     .check-icon svg {
       width: 54px;
       height: 54px;
-      stroke: black;
+      stroke: white;
       stroke-width: 4;
       fill: none;
       stroke-dasharray: 100;
@@ -126,30 +126,30 @@ src="https://www.facebook.com/tr?id=1137116105159272&ev=PageView&noscript=1"
     }
     
     h1 {
-      color: var(--accent);
+      color: var(--primary);
       font-size: 34px;
       font-weight: 800;
       margin-bottom: 16px;
     }
     
     p {
-      color: #cccccc;
+      color: #555;
       font-size: 18px;
       line-height: 1.6;
       margin-bottom: 32px;
     }
     
     .details {
-      background: #222;
+      background: #f0f9ff;
       border-radius: 16px;
       padding: 28px;
       margin-bottom: 32px;
       text-align: right;
-      border: 1px solid #333;
+      border: 1px solid var(--primary);
     }
     
     .details h2 {
-      color: var(--accent);
+      color: var(--primary);
       font-size: 22px;
       font-weight: 700;
       margin-bottom: 20px;
@@ -158,12 +158,12 @@ src="https://www.facebook.com/tr?id=1137116105159272&ev=PageView&noscript=1"
     
     .details ul {
       list-style: none;
-      color: #cccccc;
+      color: #444;
     }
     
     .details li {
       padding: 12px 0;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid #ddd;
       font-size: 16px;
     }
     
@@ -172,27 +172,26 @@ src="https://www.facebook.com/tr?id=1137116105159272&ev=PageView&noscript=1"
     }
     
     .details li strong {
-      color: var(--accent);
+      color: var(--primary);
       margin-left: 8px;
     }
     
     .btn {
       display: inline-block;
-      background: var(--accent);
-      color: black;
+      background: linear-gradient(to right, var(--primary), #2563eb);
+      color: white;
       padding: 16px 48px;
       border-radius: 12px;
       text-decoration: none;
       font-weight: 700;
       font-size: 18px;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      box-shadow: 0 4px 15px rgba(59,130,246,0.3);
     }
     
     .btn:hover {
       transform: translateY(-3px);
-      background: #e0c050;
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+      box-shadow: 0 6px 20px rgba(59,130,246,0.4);
     }
     
     @media (max-width: 640px) {
@@ -224,7 +223,7 @@ src="https://www.facebook.com/tr?id=1137116105159272&ev=PageView&noscript=1"
     
     <h1>تم استلام طلبك بنجاح! ✅</h1>
     
-    <p>شكراً لثقتك في Old Money Collection. نحن سعداء بخدمتك!</p>
+    <p>شكراً لثقتك في AM MODE. نحن سعداء بخدمتك!</p>
     
     <div class="details">
       <h2>ما التالي؟</h2>
@@ -235,11 +234,11 @@ src="https://www.facebook.com/tr?id=1137116105159272&ev=PageView&noscript=1"
         </li>
         <li>
           <strong>خطوة 2:</strong>
-          سيتم شحن التيشرت عبر Noest Express
+          سيتم شحن الطلب عبر NOEST Express
         </li>
         <li>
           <strong>خطوة 3:</strong>
-          ستستلم طلبك خلال 48 ساعة
+          ستستلم طلبك خلال 48 ساعة (حسب الولاية)
         </li>
         <li>
           <strong>الدفع:</strong>
