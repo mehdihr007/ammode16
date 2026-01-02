@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ensemble Hiver Luxe - Premium Collection - AM MODE</title>
+  <meta name="description" content="Ensemble Hiver Luxe فاخر - 4 couleurs - أحجام S إلى XXL - 4000 دج فقط.">
+  <meta property="og:title" content="Ensemble Hiver Luxe - AM MODE">
+  <meta property="og:description" content="طبعة 2024 الجديدة ب 4000 دج فقط!">
+  <meta property="og:image" content="bleuclaire.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: hsl(217, 91%, 60%);
+      --secondary: hsl(142, 76%, 36%);
+      --background: hsl(210, 30%, 98%);
+      --foreground: hsl(215, 25%, 15%);
+      --muted: hsl(210, 40%, 96%);
+      --border: hsl(214, 32%, 91%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+    }
+    .container { max-width: 500px; margin: 0 auto; padding: 16px; }
+    .header {
+      background: linear-gradient(135deg, var(--primary), hsl(205, 100%, 65%));
+      color: white; text-align: center; padding: 20px; border-radius: 0 0 16px 16px;
+    }
+    .header h1 { font-size: 1.5rem; margin-bottom: 8px; }
+    .product-card { background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(59,130,246,0.1); padding: 20px; margin: 20px 0; text-align: center; }
+    .product-img { max-width: 280px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 16px; }
+    .price { font-size: 1.8rem; font-weight: 800; color: var(--secondary); margin: 12px 0; }
+    .badge { background: rgba(16,185,129,0.15); color: var(--secondary); padding: 4px 12px; border-radius: 999px; font-weight: 600; margin-bottom: 12px; display: inline-block; }
+    .form-group { margin-bottom: 16px; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.95rem; }
+    input, select {
+      width: 100%; padding: 14px; border: 2px solid var(--border); border-radius: 12px; font-size: 1rem; background: white;
+      transition: border 0.2s;
+    }
+    input:focus, select:focus { border-color: var(--primary); outline: none; }
+    .error { border-color: #ef4444 !important; }
+    .error-msg { color: #ef4444; font-size: 0.8rem; margin-top: 4px; }
+    .total-price {
+      background: #ecfdf5; padding: 16px; border-radius: 12px; font-weight: 700; text-align: center; margin: 20px 0;
+      border: 2px solid #a7f3d0; font-size: 1.3rem; color: #166534;
+    }
+    button {
+      width: 100%; background: linear-gradient(to right, var(--primary), #2563eb); color: white; padding: 16px;
+      border-radius: 12px; font-size: 1.2rem; font-weight: 700; border: none; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(59,130,246,0.3); transition: 0.3s;
+    }
+    button:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(59,130,246,0.4); }
+    button:disabled { opacity: 0.7; cursor: not-allowed; }
+    .footer { background: var(--foreground); color: white; padding: 32px 0; margin-top: 64px; text-align: center; }
+    .footer a {
+      background: var(--secondary); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none;
+      font-weight: 700; display: inline-flex; align-items: center; gap: 8px; transition: 0.2s;
+    }
+    .footer a:hover { background: #0d9f70; }
+    #bureauGroup { display: none; }
+    @keyframes pulse-soft { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .9; transform: scale(1.02); } }
+    .animate-pulse-soft { animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>مرحباً بكم في AM MODE</h1>
+      <p>ملابس عالية الجودة بأسعار لا تُقاوم</p>
+    </div>
+
+    <div class="product-card">
+      <img class="product-img" id="productImage" src="bleuclaire.jpg" alt="Ensemble Hiver Luxe">
+      <div class="price">4000 دج فقط!</div>
+      <div class="badge">طبعة 2024 الجديدة - 4 ألوان حصرية</div>
+    </div>
+
+    <form name="commande-ensemble" netlify netlify-honeypot="_gotcha" data-netlify="true" method="POST">
+      <input type="hidden" name="_gotcha" style="display:none !important">
+
+      <div class="form-group">
+        <label for="color">اللون *</label>
+        <select id="color" name="اللون" onchange="updateImage(); updatePrice()" required>
+          <option value="">اختر اللون</option>
+          <option value="أزرق فاتح">أزرق فاتح</option>
+          <option value="أزرق غامق">أزرق غامق</option>
+          <option value="أسود">أسود</option>
+          <option value="أخضر">أخضر</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="size">الحجم *</label>
+        <select id="size" name="الحجم" onchange="updatePrice()" required>
+          <option value="">اختر الحجم</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="quantity">الكمية *</label>
+        <select id="quantity" name="الكمية" onchange="updatePrice()" required>
+          <option value="">اختر الكمية</option>
+          <option value="1">1 - 4000 دج</option>
+          <option value="2">2 - 8000 دج</option>
+          <option value="3">3 - 12000 دج</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="fullName">الاسم الكامل *</label>
+        <input id="fullName" name="الاسم" type="text" required placeholder="أدخل اسمك الكامل">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">رقم الهاتف *</label>
+        <input id="phone" name="رقم الهاتف" type="tel" required placeholder="0541961243">
+      </div>
+
+      <div class="form-group">
+        <label for="wilaya">الولاية *</label>
+        <select id="wilaya" name="الولاية" onchange="updateBureaux()" required>
+          <option value="">اختر الولاية</option>
+          <option value="أدرار">أدرار</option>
+          <option value="الشلف">الشلف</option>
+          <option value="الأغواط">الأغواط</option>
+          <option value="أم البواقي">أم البواقي</option>
+          <option value="باتنة">باتنة</option>
+          <option value="بجاية">بجاية</option>
+          <option value="بسكرة">بسكرة</option>
+          <option value="بشار">بشار</option>
+          <option value="البليدة">البليدة</option>
+          <option value="البويرة">البويرة</option>
+          <option value="تمنراست">تمنراست</option>
+          <option value="تبسة">تبسة</option>
+          <option value="تلمسان">تلمسان</option>
+          <option value="تيارت">تيارت</option>
+          <option value="تيزي وزو">تيزي وزو</option>
+          <option value="الجزائر">الجزائر</option>
+          <option value="الجلفة">الجلفة</option>
+          <option value="جيجل">جيجل</option>
+          <option value="سطيف">سطيف</option>
+          <option value="سعيدة">سعيدة</option>
+          <option value="سكيكدة">سكيكدة</option>
+          <option value="سيدي بلعباس">سيدي بلعباس</option>
+          <option value="عنابة">عنابة</option>
+          <option value="قالمة">قالمة</option>
+          <option value="قسنطينة">قسنطينة</option>
+          <option value="المدية">المدية</option>
+          <option value="مستغانم">مستغانم</option>
+          <option value="المسيلة">المسيلة</option>
+          <option value="معسكر">معسكر</option>
+          <option value="ورقلة">ورقلة</option>
+          <option value="وهران">وهران</option>
+          <option value="البيض">البيض</option>
+          <option value="برج بوعريريج">برج بوعريريج</option>
+          <option value="بومرداس">بومرداس</option>
+          <option value="الطارف">الطارف</option>
+          <option value="تيسمسيلت">تيسمسيلت</option>
+          <option value="الوادي">الوادي</option>
+          <option value="خنشلة">خنشلة</option>
+          <option value="سوق أهراس">سوق أهراس</option>
+          <option value="تيبازة">تيبازة</option>
+          <option value="ميلة">ميلة</option>
+          <option value="عين الدفلى">عين الدفلى</option>
+          <option value="النعامة">النعامة</option>
+          <option value="عين تموشنت">عين تموشنت</option>
+          <option value="غرداية">غرداية</option>
+          <option value="غليزان">غليزان</option>
+          <option value="تيميمون">تيميمون</option>
+          <option value="أولاد جلال">أولاد جلال</option>
+          <option value="بني عباس">بني عباس</option>
+          <option value="توقرت">توقرت</option>
+          <option value="المغير">المغير</option>
+          <option value="المنيعة">المنيعة</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="commune">البلدية *</label>
+        <input id="commune" name="البلدية" type="text" required placeholder="أدخل اسم البلدية" onblur="validateBaladia()">
+        <div id="baladiaError" class="error-msg" style="display:none;">البلدية مطلوبة</div>
+      </div>
+
+      <div class="form-group">
+        <label for="deliveryType">نوع التوصيل *</label>
+        <select id="deliveryType" name="نوع التوصيل" onchange="updateBureaux()" required>
+          <option value="">اختر نوع التوصيل</option>
+          <option value="home">إلى المنزل</option>
+          <option value="office">إلى مكتب NOEST Express</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="bureauGroup">
+        <label for="bureau">مكتب NOEST Express *</label>
+        <select id="bureau" name="مكتب NOEST Express" required>
+          <option value="">اختر المكتب</option>
+        </select>
+      </div>
+
+      <div class="total-price">
+        المجموع الكلي: <span id="totalPriceValue">4000</span> دج
+      </div>
+
+      <button type="submit" class="animate-pulse-soft">اطلب الآن</button>
+    </form>
+
+    <footer class="footer">
+      <p>© 2025 AM MODE - جميع الحقوق محفوظة</p>
+      <a href="https://wa.me/213791995055" target="_blank">تواصل معنا عبر واتساب</a>
+    </footer>
+  </div>
+
+  <script>
+    const DELIVERY_PRICES = { 
+      "أدرار": { home: 1200, office: 800 },
+      "الشلف": { home: 800, office: 500 },
+      "الأغواط": { home: 950, office: 600 },
+      "أم البواقي": { home: 900, office: 500 },
+      "باتنة": { home: 850, office: 500 },
+      "بجاية": { home: 800, office: 500 },
+      "بسكرة": { home: 900, office: 500 },
+      "بشار": { home: 1100, office: 700 },
+      "البليدة": { home: 600, office: 500 },
+      "البويرة": { home: 700, office: 500 },
+      "تمنراست": { home: 1600, office: 1100 },
+      "تبسة": { home: 900, office: 600 },
+      "تلمسان": { home: 900, office: 600 },
+      "تيارت": { home: 850, office: 500 },
+      "تيزي وزو": { home: 750, office: 500 },
+      "الجزائر": { home: 500, office: 400 },
+      "الجلفة": { home: 950, office: 600 },
+      "جيجل": { home: 900, office: 500 },
+      "سطيف": { home: 800, office: 500 },
+      "سعيدة": { home: 900, office: 600 },
+      "سكيكدة": { home: 900, office: 500 },
+      "سيدي بلعباس": { home: 900, office: 500 },
+      "عنابة": { home: 850, office: 500 },
+      "قالمة": { home: 900, office: 500 },
+      "قسنطينة": { home: 800, office: 500 },
+      "المدية": { home: 800, office: 500 },
+      "مستغانم": { home: 900, office: 500 },
+      "المسيلة": { home: 850, office: 600 },
+      "معسكر": { home: 900, office: 500 },
+      "ورقلة": { home: 950, office: 700 },
+      "وهران": { home: 800, office: 500 },
+      "البيض": { home: 1100, office: 700 },
+      "برج بوعريريج": { home: 800, office: 500 },
+      "بومرداس": { home: 700, office: 500 },
+      "الطارف": { home: 850, office: 500 },
+      "تيسمسيلت": { home: 900, office: 500 },
+      "الوادي": { home: 950, office: 700 },
+      "خنشلة": { home: 900, office: 500 },
+      "سوق أهراس": { home: 900, office: 500 },
+      "تيبازة": { home: 700, office: 500 },
+      "ميلة": { home: 900, office: 500 },
+      "عين الدفلى": { home: 900, office: 500 },
+      "النعامة": { home: 1100, office: 700 },
+      "عين تموشنت": { home: 900, office: 500 },
+      "غرداية": { home: 950, office: 600 },
+      "غليزان": { home: 900, office: 500 },
+      "تيميمون": { home: 1400, office: 1000 },
+      "أولاد جلال": { home: 950, office: 600 },
+      "بني عباس": { home: 1100, office: 800 },
+      "توقرت": { home: 950, office: 700 },
+      "المغير": { home: 950, office: 700 },
+      "المنيعة": { home: 1000, office: 800 }
+    };
+
+    const BUREAUX = {
+      "أدرار": ["Cité les palmiers en face l'hôpital"],
+      "الشلف": ["Rue Lac des Forets (A côte du CNRC)"],
+      "الأغواط": ["Cité Al Ouliam/En face la mosquée Hammani"],
+      "أم البواقي": ["Ain Mlila Cité 12 logements en face CEM belabed"],
+      "باتنة": [
+        "Cité meddour kchida en face les batiments 500",
+        "Quartier CHAABANI, en face notaire Bachir Farhani, a cote Algerie Tele"
+      ],
+      "بجاية": [
+        "Bâtiment H, Promotion Somacob - Entrée 1 (Edimco), derriere controle tec",
+        "Rue hibouche - arafou En face de djurdjura cars et alliance assurance"
+      ],
+      "بسكرة": ["Cité 70 Logement bloc 04 devant hotel Moris"],
+      "بشار": ["Laderradra radio El SAOURA/En face la protection civile"],
+      "البليدة": [
+        "Residence Belkbir en face salle des fetes Layalina"
+      ],
+      "البويرة": ["Villa hamzaoui, ammar khodja, en face yalidine"],
+      "تمنراست": ["Cité El Hofra - Sarsouf"],
+      "تبسة": ["Boulevard Houari Boumedien (proche de la banque AGB)"],
+      "تلمسان": [
+        "Les Dahlias 426 El kiffane",
+        "Ouled ben Saber, a côte restaurant Rais, en face la Daira"
+      ],
+      "تيارت": ["Cité Kaid Ahmed 500 Logements - Batiment 20 N°14KA200C2"],
+      "تيزي وزو": ["Cité 450 Logements, Nouvelle Ville enface la salle des fetes liya"],
+      "الجزائر": ["Cité LSP Boudjemaa temime derriere Mosquée el ansar"],
+      "الجلفة": ["Cité Boutrifis/En face de la gendarmerie"],
+      "جيجل": ["Rue 26, Avenue Kaoula Mokhtar, cita sans interdt, Hay IDARI"],
+      "سطيف": [
+        "Cité Messoudi Edhouadi 1014-614 Logement/En face la gare Didouche Mourad",
+        "Cité Tassahoumi, 160 Logements - Bâtiment 11, el euma Café Wahit"
+      ],
+      "سعيدة": ["Cité Riad en face Maison de l'Environnement"],
+      "سكيكدة": ["Rue Mohammed Namou, en face la direction sonalgaz fobor la monte de hammu"],
+      "سيدي بلعباس": ["Cité Zitouni Lakhadhar (derriere lycee Azza)"],
+      "عنابة": ["Rue Djemila, Saint Cloud (A côte de la mosquée Badj)"],
+      "قالمة": ["Cité 19 Juin - Numéro 02, en face marché Elbaraka"],
+      "قسنطينة": [
+        "Cité Tlemcen Zouaghi (En face de la gendarmerie)",
+        "ALI MENDJLI a cote de la salle des fetes EL BARAKA"
+      ],
+      "المدية": ["Cité Emnasar (Près du pole universitaire et Soneigaz)"],
+      "مستغانم": ["pépinière en face la glacier Juste accote libraire BENALOUJA cité AKID AMIROUCHE BT"],
+      "المسيلة": [
+        "Rue Ichbilia (En face Université de M'Sila)",
+        "Cité El Bader (ESTTIH) a cote de l'annexe APC"
+      ],
+      "معسكر": [
+        "Rue Larbi Ben M'hidi, a cote de l'agence de Barigou",
+        "Rue d'oran, colonel Amirouche, Lot 112 N°07 local 6 a cote Hadj grifa"
+      ],
+      "ورقلة": ["Cité sidi Abdelkader, derriere la maison de jeune"],
+      "وهران": [
+        "Cité 1004 Logements SN B/T1 - Rez-De-Chaussée - Cote Droit 1, en face stade la radie",
+        "Coopérative Immobilière Dar El Amel - N°14 - Local RC",
+        "Rue Bouquerie, n° 56, Oran (près de la gare routière de Tebraia) GAMBI"
+      ],
+      "البيض": ["A cote jole vue a cote direction soneigaz"],
+      "برج بوعريريج": ["Rue Tabet Salah Bordj Bou Arrerid (Devant la maison de finance)"],
+      "بومرداس": [
+        "Cité mimouza en face la piscine olympique Boumerdes",
+        "KARA MUSTAPHA, en face la mosquée, ouled moussa"
+      ],
+      "الطارف": ["City center (centre commerciale zaydi 1er etage N°10 wilaya etEl tarf"],
+      "تيسمسيلت": ["Résidence kaidi (promotion) ancien arrêt des taxis"],
+      "الوادي": ["Cité Al-Rimal, (la route menant au tribunal)"],
+      "خنشلة": ["Trig lourd a cote de la clinique dialyse Messal-Khenchela"],
+      "سوق أهراس": ["En face radio souk ahras et laboratoire des analyses Taghest"],
+      "تيبازة": ["Cité Mohammed Bougara, a cote de ecole prive DAYA School"],
+      "ميلة": [
+        "Chateau d'eau en face protection civile",
+        "Rue 1er Novembre 1954 Chelghoum El aid (hotel Rhumel)"
+      ],
+      "عين الدفلى": ["Cité Nadjem/En face de Taxi Aissam"],
+      "النعامة": ["Centre-Ville (En face de la Daira Mechria)"],
+      "عين تموشنت": ["N°11 e 6, lot 567, Cité Zitouni (A cote de la wilaya), a cote de pharmacie Fi"],
+      "غرداية": ["Rue principale Hadi Messaoud en face la annexe apc. Haj Massoud"],
+      "غليزان": ["Cité 31 logmt en face la justice, a cote de la banque société général"],
+      "تيميمون": ["Cité MAHJOUB N° de la porte 16, Timimoun en face le stade et SAA"],
+      "أولاد جلال": ["أولاد جلال"], // Placeholder si pas dans index
+      "بني عباس": ["Centre-Ville(Entre la poste et le CNRC)"],
+      "توقرت": ["Cité Sidi Abdeslam (Près de la banque BEA)"],
+      "المغير": ["المغير"], // Placeholder si pas dans index
+      "المنيعة": ["Route de l'unite Africaine (A cote de la boulangerie Boussaidi) 20 metres de la"]
+    };
+
+    const IMAGE_MAP = {
+      "أزرق فاتح": "bleuclaire.jpg",
+      "أزرق غامق": "bleufoncer.jpg",
+      "أسود": "Blackk.jpg",
+      "أخضر": "vertt.jpg"
+    };
+
+    function updateImage() {
+      const color = document.getElementById('color').value;
+      const img = document.getElementById('productImage');
+      if (IMAGE_MAP[color]) {
+        img.src = IMAGE_MAP[color];
+        img.alt = `Ensemble Hiver Luxe - ${color}`;
+      }
+    }
+
+    function updateBureaux() {
+      const wilaya = document.getElementById('wilaya').value;
+      const deliveryType = document.getElementById('deliveryType').value;
+      const bureauGroup = document.getElementById('bureauGroup');
+      const bureauSelect = document.getElementById('bureau');
+
+      if (deliveryType === 'office' && wilaya) {
+        bureauGroup.style.display = 'block';
+        bureauSelect.innerHTML = '<option value="">اختر المكتب</option>';
+        const bureaux = BUREAUX[wilaya] || ['مكتب NOEST Express الرئيسي في ' + wilaya];
+        bureaux.forEach(bureau => {
+          bureauSelect.innerHTML += `<option value="${bureau}">${bureau}</option>`;
+        });
+        bureauSelect.setAttribute('required', 'required');
+      } else {
+        bureauGroup.style.display = 'none';
+        bureauSelect.value = '';
+        bureauSelect.removeAttribute('required');
+      }
+      updatePrice();
+    }
+
+    function validateBaladia() {
+      const baladia = document.getElementById('commune').value.trim();
+      const errorDiv = document.getElementById('baladiaError');
+      const input = document.getElementById('commune');
+      if (baladia === '') {
+        input.classList.add('error');
+        errorDiv.style.display = 'block';
+      } else {
+        input.classList.remove('error');
+        errorDiv.style.display = 'none';
+      }
+    }
+
+    function updatePrice() {
+      const quantity = parseInt(document.getElementById('quantity').value) || 1;
+      const wilaya = document.getElementById('wilaya').value;
+      const deliveryType = document.getElementById('deliveryType').value;
+
+      // Prix de base
+      let basePrice = quantity * 4000;
+
+      // Frais de livraison
+      let deliveryCost = 0;
+      if (wilaya && deliveryType && DELIVERY_PRICES[wilaya]) {
+        deliveryCost = deliveryType === 'home' 
+          ? DELIVERY_PRICES[wilaya].home 
+          : DELIVERY_PRICES[wilaya].office;
+      }
+
+      // Total final
+      const total = basePrice + deliveryCost;
+      document.getElementById('totalPriceValue').innerText = total;
+    }
+
+    // AJAX Submit
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const baladia = document.getElementById('commune').value.trim();
+      if (baladia === '') {
+        alert('البلدية مطلوبة');
+        return;
+      }
+      const button = this.querySelector('button[type="submit"]');
+      const originalText = button.innerText;
+      button.disabled = true;
+      button.innerText = 'جاري الإرسال...';
+
+      const formData = new FormData(this);
+      const encoded = new URLSearchParams(formData).toString();
+
+      fetch('/', {
+        method: 'POST',
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encoded
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = '/merci.html?success=true';
+        } else {
+          throw new Error('Erreur Netlify: ' + response.status);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert('خطأ في الإرسال: ' + err.message);
+      })
+      .finally(() => {
+        button.disabled = false;
+        button.innerText = originalText;
+      });
+    });
+  </script>
+</body>
+</html>
