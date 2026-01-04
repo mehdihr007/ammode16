@@ -191,20 +191,20 @@
       </div>
 
       <div class="form-group">
-  <label for="deliveryType">نوع التوصيل *</label>
-  <select id="deliveryType" name="نوع التوصيل" onchange="updateBureaux()" required>
-    <option value="">اختر نوع التوصيل</option>
-    <option value="توصيل إلى المنزل">توصيل إلى المنزل</option>
-    <option value="توصيل إلى مكتب NOEST Express">توصيل إلى مكتب NOEST Express</option>
-  </select>
-</div>
+        <label for="deliveryType">نوع التوصيل *</label>
+        <select id="deliveryType" name="نوع التوصيل" onchange="updateBureaux()" required>
+          <option value="">اختر نوع التوصيل</option>
+          <option value="توصيل إلى المنزل">توصيل إلى المنزل</option>
+          <option value="توصيل إلى مكتب NOEST Express">توصيل إلى مكتب NOEST Express</option>
+        </select>
+      </div>
 
       <div class="form-group" id="bureauGroup" style="display:none;">
-  <label for="bureau">مكتب NOEST Express</label>
-  <select id="bureau" name="مكتب NOEST Express">
-    <option value="">اختر المكتب (إجباري فقط إذا اخترت التوصيل إلى المكتب)</option>
-  </select>
-</div>
+        <label for="bureau">مكتب NOEST Express</label>
+        <select id="bureau" name="مكتب NOEST Express">
+          <option value="">اختر المكتب (إجباري فقط إذا اخترت التوصيل إلى المكتب)</option>
+        </select>
+      </div>
 
       <div class="total-price">
         المجموع الكلي: <span id="totalPriceValue">4000</span> دج
@@ -214,13 +214,13 @@
     </form>
 
     <footer class="footer">
-      <p>© 2025 AM MODE - جميع الحقوق محفوظة</p>
+      <p>© 2026 AM MODE - جميع الحقوق محفوظة</p>
       <a href="https://wa.me/213791995055" target="_blank">تواصل معنا عبر واتساب</a>
     </footer>
   </div>
 
   <script>
-    const DELIVERY_PRICES = { 
+    const DELIVERY_PRICES = {
       "أدرار": { home: 1200, office: 800 },
       "الشلف": { home: 800, office: 500 },
       "الأغواط": { home: 950, office: 600 },
@@ -290,9 +290,7 @@
       ],
       "بسكرة": ["Cité 70 Logement bloc 04 devant hotel Moris"],
       "بشار": ["Laderradra radio El SAOURA/En face la protection civile"],
-      "البليدة": [
-        "Residence Belkbir en face salle des fetes Layalina"
-      ],
+      "البليدة": ["Residence Belkbir en face salle des fetes Layalina"],
       "البويرة": ["Villa hamzaoui, ammar khodja, en face yalidine"],
       "تمنراست": ["Cité El Hofra - Sarsouf"],
       "تبسة": ["Boulevard Houari Boumedien (proche de la banque AGB)"],
@@ -356,10 +354,10 @@
       "غرداية": ["Rue principale Hadi Messaoud en face la annexe apc. Haj Massoud"],
       "غليزان": ["Cité 31 logmt en face la justice, a cote de la banque société général"],
       "تيميمون": ["Cité MAHJOUB N° de la porte 16, Timimoun en face le stade et SAA"],
-      "أولاد جلال": ["أولاد جلال"], // Placeholder si pas dans index
+      "أولاد جلال": ["أولاد جلال"],
       "بني عباس": ["Centre-Ville(Entre la poste et le CNRC)"],
       "توقرت": ["Cité Sidi Abdeslam (Près de la banque BEA)"],
-      "المغير": ["المغير"], // Placeholder si pas dans index
+      "المغير": ["المغير"],
       "المنيعة": ["Route de l'unite Africaine (A cote de la boulangerie Boussaidi) 20 metres de la"]
     };
 
@@ -380,26 +378,26 @@
     }
 
     function updateBureaux() {
-  const wilaya = document.getElementById('wilaya').value;
-  const deliveryType = document.getElementById('deliveryType').value;
-  const bureauGroup = document.getElementById('bureauGroup');
-  const bureauSelect = document.getElementById('bureau');
+      const wilaya = document.getElementById('wilaya').value;
+      const deliveryType = document.getElementById('deliveryType').value;
+      const bureauGroup = document.getElementById('bureauGroup');
+      const bureauSelect = document.getElementById('bureau');
 
-  if (deliveryType === 'توصيل إلى مكتب NOEST Express' && wilaya) {
-    bureauGroup.style.display = 'block';
-    bureauSelect.innerHTML = '<option value="">اختر المكتب</option>';
-    const bureaux = BUREAUX[wilaya] || ['مكتب NOEST Express الرئيسي في ' + wilaya];
-    bureaux.forEach(bureau => {
-      bureauSelect.innerHTML += `<option value="${bureau}">${bureau}</option>`;
-    });
-    bureauSelect.setAttribute('required', 'required');
-  } else {
-    bureauGroup.style.display = 'none';
-    bureauSelect.innerHTML = '<option value="">لا حاجة لاختيار مكتب (توصيل منزلي)</option>';
-    bureauSelect.removeAttribute('required');
-  }
-  updatePrice();
-}
+      if (deliveryType === 'توصيل إلى مكتب NOEST Express' && wilaya) {
+        bureauGroup.style.display = 'block';
+        bureauSelect.innerHTML = '<option value="">اختر المكتب</option>';
+        const bureaux = BUREAUX[wilaya] || ['مكتب NOEST Express الرئيسي في ' + wilaya];
+        bureaux.forEach(bureau => {
+          bureauSelect.innerHTML += `<option value="${bureau}">${bureau}</option>`;
+        });
+        bureauSelect.setAttribute('required', 'required');
+      } else {
+        bureauGroup.style.display = 'none';
+        bureauSelect.innerHTML = '<option value="">لا حاجة لاختيار مكتب (توصيل منزلي)</option>';
+        bureauSelect.removeAttribute('required');
+      }
+      updatePrice();
+    }
 
     function validateBaladia() {
       const baladia = document.getElementById('commune').value.trim();
@@ -419,23 +417,19 @@
       const wilaya = document.getElementById('wilaya').value;
       const deliveryType = document.getElementById('deliveryType').value;
 
-      // Prix de base
       let basePrice = quantity * 4000;
 
-      // Frais de livraison
       let deliveryCost = 0;
       if (wilaya && deliveryType && DELIVERY_PRICES[wilaya]) {
-        deliveryCost = deliveryType === 'توصيل إلى المنزل' 
-          ? DELIVERY_PRICES[wilaya].home 
+        deliveryCost = deliveryType === 'توصيل إلى المنزل'
+          ? DELIVERY_PRICES[wilaya].home
           : DELIVERY_PRICES[wilaya].office;
       }
 
-      // Total final
       const total = basePrice + deliveryCost;
       document.getElementById('totalPriceValue').innerText = total;
     }
 
-    // AJAX Submit
     document.querySelector('form').addEventListener('submit', function(e) {
       e.preventDefault();
       const baladia = document.getElementById('commune').value.trim();
@@ -443,6 +437,7 @@
         alert('البلدية مطلوبة');
         return;
       }
+
       const button = this.querySelector('button[type="submit"]');
       const originalText = button.innerText;
       button.disabled = true;
@@ -474,5 +469,4 @@
     });
   </script>
 </body>
-
 </html>
