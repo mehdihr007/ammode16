@@ -191,20 +191,20 @@
       </div>
 
       <div class="form-group">
-        <label for="deliveryType">نوع التوصيل *</label>
-        <select id="deliveryType" name="نوع التوصيل" onchange="updateBureaux()" required>
-          <option value="">اختر نوع التوصيل</option>
-          <option value="home">إلى المنزل</option>
-          <option value="office">إلى مكتب NOEST Express</option>
-        </select>
-      </div>
+  <label for="deliveryType">نوع التوصيل *</label>
+  <select id="deliveryType" name="نوع التوصيل" onchange="updateBureaux()" required>
+    <option value="">اختر نوع التوصيل</option>
+    <option value="توصيل إلى المنزل">توصيل إلى المنزل</option>
+    <option value="توصيل إلى مكتب NOEST Express">توصيل إلى مكتب NOEST Express</option>
+  </select>
+</div>
 
-      <div class="form-group" id="bureauGroup">
-        <label for="bureau">مكتب NOEST Express *</label>
-        <select id="bureau" name="مكتب NOEST Express" required>
-          <option value="">اختر المكتب</option>
-        </select>
-      </div>
+      <div class="form-group" id="bureauGroup" style="display:none;">
+  <label for="bureau">مكتب NOEST Express</label>
+  <select id="bureau" name="مكتب NOEST Express">
+    <option value="">اختر المكتب (إجباري فقط إذا اخترت التوصيل إلى المكتب)</option>
+  </select>
+</div>
 
       <div class="total-price">
         المجموع الكلي: <span id="totalPriceValue">4000</span> دج
@@ -380,26 +380,26 @@
     }
 
     function updateBureaux() {
-      const wilaya = document.getElementById('wilaya').value;
-      const deliveryType = document.getElementById('deliveryType').value;
-      const bureauGroup = document.getElementById('bureauGroup');
-      const bureauSelect = document.getElementById('bureau');
+  const wilaya = document.getElementById('wilaya').value;
+  const deliveryType = document.getElementById('deliveryType').value;
+  const bureauGroup = document.getElementById('bureauGroup');
+  const bureauSelect = document.getElementById('bureau');
 
-      if (deliveryType === 'office' && wilaya) {
-        bureauGroup.style.display = 'block';
-        bureauSelect.innerHTML = '<option value="">اختر المكتب</option>';
-        const bureaux = BUREAUX[wilaya] || ['مكتب NOEST Express الرئيسي في ' + wilaya];
-        bureaux.forEach(bureau => {
-          bureauSelect.innerHTML += `<option value="${bureau}">${bureau}</option>`;
-        });
-        bureauSelect.setAttribute('required', 'required');
-      } else {
-        bureauGroup.style.display = 'none';
-        bureauSelect.value = '';
-        bureauSelect.removeAttribute('required');
-      }
-      updatePrice();
-    }
+  if (deliveryType === 'توصيل إلى مكتب NOEST Express' && wilaya) {
+    bureauGroup.style.display = 'block';
+    bureauSelect.innerHTML = '<option value="">اختر المكتب</option>';
+    const bureaux = BUREAUX[wilaya] || ['مكتب NOEST Express الرئيسي في ' + wilaya];
+    bureaux.forEach(bureau => {
+      bureauSelect.innerHTML += `<option value="${bureau}">${bureau}</option>`;
+    });
+    bureauSelect.setAttribute('required', 'required');
+  } else {
+    bureauGroup.style.display = 'none';
+    bureauSelect.innerHTML = '<option value="">لا حاجة لاختيار مكتب (توصيل منزلي)</option>';
+    bureauSelect.removeAttribute('required');
+  }
+  updatePrice();
+}
 
     function validateBaladia() {
       const baladia = document.getElementById('commune').value.trim();
@@ -425,7 +425,7 @@
       // Frais de livraison
       let deliveryCost = 0;
       if (wilaya && deliveryType && DELIVERY_PRICES[wilaya]) {
-        deliveryCost = deliveryType === 'home' 
+        deliveryCost = deliveryType === 'توصيل إلى المنزل' 
           ? DELIVERY_PRICES[wilaya].home 
           : DELIVERY_PRICES[wilaya].office;
       }
@@ -474,4 +474,5 @@
     });
   </script>
 </body>
+
 </html>
